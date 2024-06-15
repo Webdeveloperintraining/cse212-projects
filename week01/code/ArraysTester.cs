@@ -1,3 +1,5 @@
+using System.Linq.Expressions;
+
 public static class ArraysTester {
     /// <summary>
     /// Entry point for the tests
@@ -39,7 +41,19 @@ public static class ArraysTester {
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return new double[0]; // replace this return statement with your own
+    // STEP 1 Create an empty list to store the number of multiples
+        List<double> myList = new List<double>();
+    // STEP 2 Implement a FOR loop that to get the multiples of the input.
+        for (int i = 1; i <= length;  i++)
+        {
+    // STEP 3 Multiply the starting number with the loop index
+            double calculation = i*number;
+    // STEP 4 Store the result in our list
+            myList.Add(calculation);
+        }
+    // STEP 5 return list and turn it into an array
+        return myList.ToArray();
+        //return new double[0]; // replace this return statement with your own
     }
     
     /// <summary>
@@ -56,6 +70,67 @@ public static class ArraysTester {
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+
+    // STEP 1 Create a new list to store sorted list
+        List<int> newList = new List<int>();
+    
+        
+
+
+
+
+
+        // int spacesMoved = amount % data.Count;
+        // List<int> x = data.GetRange(0,spacesMoved);
+
+        // foreach(var element in x)
+        // {
+        //     Console.Write(element);
+        // }
+
+
+
+
+
+
+
+
+
+    // STEP 2 FOR Loop to g though each element from the "data" list
+        // foreach(int i in data)
+        // {
+        //      Console.WriteLine(i);
+        // }
+        //for (int i=0; i < data.Count; i++)
+        //{
+            //newList.Add(spacesMoved); 
+            //int newIndex = spacesMoved + i;
+            //newList.Add(newIndex); 
+            // if (newIndex > data.Count){
+
+            // }
+
+            //List<int> x = data.GetRange(newIndex, 3);
+
+            // if (i == 0)
+            // {
+            //     newList.Add(data[newStartingIndex]);
+                
+            // }
+            // else
+            // {   
+            //     //i--;
+            //     //Console.WriteLine( amount % i );
+            //     newList.Add(data[i-1]); 
+            //     //i++;          
+            // }    
+            
+        //}
+
+        // foreach(var element in newList)
+        // {
+        //     Console.Write(element);
+        // }
 
     }
 }
