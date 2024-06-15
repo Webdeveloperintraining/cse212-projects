@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 public static class ArraySelector
 {
     public static void Run()
@@ -10,7 +12,23 @@ public static class ArraySelector
     }
 
     private static int[] ListSelector(int[] list1, int[] list2, int[] select)
-    {
-        return new int[0];
+    {   
+        List<int> myList = new List<int>();
+        for (var i=0; i < select.Length; ++i)
+        {
+        if(i< list1.Length && i < list2.Length)
+        {
+            if (select[i] == 1)
+            {
+                myList.Add(list1[i]);
+            }
+            else if(select[i] == 2)
+            {
+            myList.Add(list2[i]); 
+            }
+        }
+    }
+        
+        return myList.ToArray();
     }
 }
