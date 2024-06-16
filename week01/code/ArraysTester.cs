@@ -73,12 +73,101 @@ public static class ArraysTester {
 
     // STEP 1 Create a new list to store sorted list
         List<int> newList = new List<int>();
+
+    // STEP 2 Identify first index to append to new list
+        int newindex = data.Count - amount;
+
+    //STEP 3 Create a For loop to add each element from the "data" list to the "newList" list
+        for (int i = 0; i < data.Count; i++)
+            {
+    // STEP 4 Append new index value if it's less than "data" list length
+            if (newindex + i < data.Count){
+                newList.Add(data[newindex+i]);
+            }
+    // STEP 5 If the new index value is greater than "data" list length, 
+    // I wrapped  round the index number back to 0.
+            else{
+                newList.Add(data[i - amount % data.Count]);
+            }
+        }
+    // STEP 6 Print Results
+        foreach(var element in newList)
+        {
+            Console.Write(element);
+        }
+
+    // Chat GPT helped me on this step below, I didn't know how to modify the numbers list
+    for (int i = 0; i < data.Count; i++)
+        {
+            data[i] = newList[i];
+        }
+    }
+}
+
+
+            // if (i == 0) working
+            // {
+            //     newList.Add(data[newindex]);
+            // }
+            // else{
+            //     newList.Add(data[i-1]);
+            // }
+            
+
+
+
+    //     for (int i = 0; i < data.Count; i++)
+    //     {
+    //         if (i <= amount % data.Count)
+    //         {
+    //             newList.Add(data[i-amount]);
+    //         }
+    //         else{
+    //             newList.Add(data[i]);
+    //         }
+    //     }
+
+    //     foreach(var element in newList)
+    //     {
+    //         Console.Write(element);
+    //     }
+
+    // }
+
+        // for (int i = amount % data.Count; i < 0; i++)
+        // {
+        //     Console.Write(data[i]);
+        // }
+
+        // int spacesMoved = amount % data.Count;
+        // List<int> slice = data.GetRange(0, spacesMoved);
+
+        // newList.AddRange(slice);
+        // newList.AddRange(slice2);
+        // foreach (int number in newList)
+        // {
+        //     Console.Write(number);
+        // }
+
+
     
-        
+        //REVERSE LIST
+        // for (int i = data.Count - 1; i >=0; i--)
+        // {
+        //     Console.Write(data[i]);
+        // }
+
+                // for (int i = 0; i < data.Count; i++)
+        // {
+        //     int spacesMoved = amount % data.Count;
+            
+        //     //int newIndex = data.Count - amount;
+        //     if (amount > data.Count){
+        //         newList.Add(i-spacesMoved);
+        //     }
 
 
-
-
+        // }
 
         // int spacesMoved = amount % data.Count;
         // List<int> x = data.GetRange(0,spacesMoved);
@@ -87,13 +176,6 @@ public static class ArraysTester {
         // {
         //     Console.Write(element);
         // }
-
-
-
-
-
-
-
 
 
     // STEP 2 FOR Loop to g though each element from the "data" list
@@ -132,5 +214,5 @@ public static class ArraysTester {
         //     Console.Write(element);
         // }
 
-    }
-}
+    //}
+
