@@ -10,19 +10,27 @@ public class CustomerService {
 
         // Test Cases
 
+
         // Test 1
         // Scenario: 
         // Expected Result: 
         Console.WriteLine("Test 1");
-
+        var test1 = new CustomerService(10);
+        test1.AddNewCustomer();
+        test1.ServeCustomer();     
+   
         // Defect(s) Found: 
-
+        var fail1 = new CustomerService(5);
+        fail1 .AddNewCustomer();
+        fail1 .ServeCustomer();     
         Console.WriteLine("=================");
 
         // Test 2
         // Scenario: 
         // Expected Result: 
         Console.WriteLine("Test 2");
+
+        //tests.Enqueue(5);
 
         // Defect(s) Found: 
 
