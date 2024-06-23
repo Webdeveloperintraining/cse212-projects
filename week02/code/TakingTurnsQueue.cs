@@ -38,6 +38,11 @@ public class TakingTurnsQueue {
                 person.Turns -= 1;
                 _people.Enqueue(person);
             }
+            // Chat GPT found this problem but I thought a solution on my own
+            else if (person.Turns <= 0)
+            {
+               _people.Enqueue(person);
+            }
 
             Console.WriteLine(person.Name);
         }
