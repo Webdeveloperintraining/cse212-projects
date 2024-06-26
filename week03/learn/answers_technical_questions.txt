@@ -1,0 +1,23 @@
+Consider the following scenario:
+
+    Write code to find the first time in a string when a letter is duplicated.
+
+What are possible scenarios to consider? (For example, think of a few strings that you would want to try with your solution.)
+I need to to consieder that the black spaces don't count as a repeating character nor 
+any symbol like commas or question marks. I imagine to use words like "cheese", "my little dinosaur", "tornado", etc.
+
+What are some data structures that may be useful? And what would their performance be?
+I think a list or dictionary would be the best fit, depending on the context.
+If I want to guess the amount of times a letter repeats itself a list would be the best fit by adding 
+
+A dictionary may be useful to use each character as key and set its value the number of times is repeated in the string
+
+I think the performance would be  O(1) in both scenarios
+
+What are the boundary conditions that you should consider for this problem?
+I should consider that they're not long text.
+
+Outline a possible solution.
+/*
+
+*/
