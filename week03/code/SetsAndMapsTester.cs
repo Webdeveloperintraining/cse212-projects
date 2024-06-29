@@ -1,4 +1,6 @@
+using System.Linq.Expressions;
 using System.Text.Json;
+using System.Threading.Tasks.Dataflow;
 
 public static class SetsAndMapsTester {
     public static void Run() {
@@ -111,6 +113,20 @@ public static class SetsAndMapsTester {
         // To display the pair correctly use something like:
         // Console.WriteLine($"{word} & {pair}");
         // Each pair of words should displayed on its own line.
+
+        var myset1= new HashSet<string>();
+        foreach(var word in words)
+        {
+            if(word[1] != word[0])
+            {
+                myset1.Add(word);
+                string reversed = $"{word[1]}{word[0]}";
+                if(myset1.Contains(reversed))
+                {
+                    Console.WriteLine($"{word} & {reversed}");
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -132,8 +148,14 @@ public static class SetsAndMapsTester {
         foreach (var line in File.ReadLines(filename)) {
             var fields = line.Split(",");
             // Todo Problem 2 - ADD YOUR CODE HERE
+            var key = fields[3];
+            if (!degrees.ContainsKey(key)){
+                degrees[key] = 1;
+            }
+            else{
+                degrees[key] = degrees[key]+1;
+            }
         }
-
         return degrees;
     }
 
@@ -158,7 +180,50 @@ public static class SetsAndMapsTester {
     /// #############
     private static bool IsAnagram(string word1, string word2) {
         // Todo Problem 3 - ADD YOUR CODE HERE
-        return false;
+        var letters = new Dictionary<char,int>();
+
+        for(int i=0; i < word1.Length; i++)
+        {
+            if (Char.IsWhiteSpace(word1[i])==false)
+            {
+                char lower_letter = word1.ToLower()[i];
+                
+                if(!letters.ContainsKey(lower_letter))
+                {
+                    letters.Add(lower_letter,1);
+                }
+                else
+                {
+                    letters[lower_letter]+=1;
+                }
+            }
+        }
+
+        for(int i=0; i < word2.Length; i++)
+        {
+            if (Char.IsWhiteSpace(word2[i])==false)
+            {
+                char lower_letter = word2.ToLower()[i];
+                
+                if(!letters.ContainsKey(lower_letter))
+                {
+                    letters.Add(lower_letter,1);
+                }
+                else
+                {
+                    letters[lower_letter]+=1;
+                }
+            }
+        }
+        //Console.WriteLine(string.Join(", ", letters));
+        foreach(var letter in letters.Values)
+        {
+            if(letter % 2 != 0)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     /// <summary>

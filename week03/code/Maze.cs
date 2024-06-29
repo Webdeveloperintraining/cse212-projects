@@ -30,6 +30,14 @@ public class Maze {
     /// </summary>
     public void MoveLeft() {
         // FILL IN CODE
+        if(_currX <= 1)
+        {
+            Console.WriteLine("Can't go that way!");
+        }
+        else
+        {
+            _currX--;
+        }
     }
 
     /// <summary>
@@ -38,6 +46,14 @@ public class Maze {
     /// </summary>
     public void MoveRight() {
         // FILL IN CODE
+        if(_currX >= 6)
+        {
+            Console.WriteLine("Can't go that way!");
+        }
+        else
+        {
+            _currX++;
+        }
     }
 
     /// <summary>
@@ -46,6 +62,15 @@ public class Maze {
     /// </summary>
     public void MoveUp() {
         // FILL IN CODE
+        if(_currY <= 1)
+        {
+            Console.WriteLine("Can't go that way!");
+        }
+        else
+        {
+            _currY--;
+        }
+        
     }
 
     /// <summary>
@@ -54,6 +79,14 @@ public class Maze {
     /// </summary>
     public void MoveDown() {
         // FILL IN CODE
+        if(_currY >= 6)
+        {
+            Console.WriteLine("Can't go that way!");
+        }
+        else
+        {
+            _currY++;
+        }
     }
 
     public void ShowStatus() {
