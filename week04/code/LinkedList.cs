@@ -28,6 +28,18 @@ public class LinkedList : IEnumerable<int> {
     /// </summary>
     public void InsertTail(int value) {
         // TODO Problem 1
+        Node node1 = new Node(value);
+        if (_tail is null) {
+            _head = node1;
+            _tail = node1;
+        }
+        else
+        {
+            node1.Prev = _tail;
+            _tail.Next = node1;
+            _tail = node1;
+        }
+
     }
 
 
@@ -56,6 +68,18 @@ public class LinkedList : IEnumerable<int> {
     /// </summary>
     public void RemoveTail() {
         // TODO Problem 2
+        if (_head == _tail) {
+            _head = null;
+            _tail = null;
+        }
+         else if (_tail is not null) {
+            _tail = _tail.Prev;
+            if(_tail is not null)
+            {
+                _tail.Next = null;
+            }
+            
+        }
     }
 
     /// <summary>
@@ -94,6 +118,50 @@ public class LinkedList : IEnumerable<int> {
     /// </summary>
     public void Remove(int value) {
         // TODO Problem 3
+    var current = _head;
+    while (current != null)
+    {  
+        if (current.Data == value) 
+        {   
+            if (_head == _tail) {
+                _head = null;
+                _tail = null;
+                break;
+            }
+            
+            if (_head != null && _tail != null)
+            {
+
+                if (_head.Data == current.Data) 
+                {
+                    _head = _head.Next;
+                    if (_head != null) {
+                        _head.Next!.Prev = null;
+                    }
+                    break;
+                }
+
+                else if (_tail.Data == current.Data) 
+                {
+                    _tail = _tail.Prev;
+                    if (_tail != null) {
+                    _tail.Next = null;
+                    }
+                    break;
+                }
+                
+                else {
+                    if (current.Prev is not null && current.Next is not null){
+                    current.Next.Prev = current.Prev;
+                    current.Prev.Next = current.Next;
+                    }
+                    break;
+                }
+            }
+        } 
+        current = current.Next;
+    }
+
     }
 
     /// <summary>
@@ -101,6 +169,36 @@ public class LinkedList : IEnumerable<int> {
     /// </summary>
     public void Replace(int oldValue, int newValue) {
         // TODO Problem 4
+        Node newNode = new Node(newValue);
+        var current = _head;
+        while (current is not null)
+        {
+            if (current.Data == oldValue)
+            {
+                //Remove(current.Data);
+                if (current == _head && _head is not null)
+                {   
+                    RemoveHead();
+                    newNode.Next = _head; 
+                    _head.Prev = newNode;
+                    _head = newNode;
+
+                }
+                if (current == _tail)
+                {
+                    RemoveTail();
+                    newNode.Prev = _tail;
+                    _tail.Next = newNode;
+                    _tail = newNode;
+                }
+                else
+                {
+                    //ChatGPT helped me get this    
+                    current.Data = newValue;                                                    
+                }
+            }
+            current = current.Next;
+        }
     }
 
     /// <summary>
