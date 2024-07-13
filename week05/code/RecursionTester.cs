@@ -1,3 +1,5 @@
+using System.Reflection.PortableExecutable;
+
 public static class RecursionTester {
     /// <summary>
     /// Entry point for the Prove 8 tests
@@ -67,7 +69,7 @@ public static class RecursionTester {
         Console.WriteLine(CountWaysToClimb(20)); // 121415
         // Uncomment out the test below after implementing memoization.  It won't work without it.
         // TODO Problem 3
-        // Console.WriteLine(CountWaysToClimb(100));  // 180396380815100901214157639
+        Console.WriteLine(CountWaysToClimb(100));  // 180396380815100901214157639
 
         // Sample Test Cases (may not be comprehensive) 
         Console.WriteLine("\n=========== PROBLEM 4 TESTS ===========");
@@ -147,7 +149,12 @@ public static class RecursionTester {
     /// </summary>
     public static int SumSquaresRecursive(int n) {
         // TODO Start Problem 1
-        return 0;
+        //var calc = 0;
+        if (n <= 0)
+        {
+            return 0;
+        }
+        return Convert.ToInt32( Math.Pow( n, 2 ) + SumSquaresRecursive( n - 1 ) );   
     }
 
     /// <summary>
@@ -171,6 +178,20 @@ public static class RecursionTester {
     /// </summary>
     public static void PermutationsChoose(string letters, int size, string word = "") {
         // TODO Start Problem 2
+        if (size <= 1)
+        {
+            // If there are no letters left to permute, print the current permutation.
+            Console.WriteLine(word);
+        }
+        else
+        {
+            for (var i = 0; i < letters.Length; i++)
+            {
+                var lettersLeft = letters.Remove(i);
+               PermutationsChoose(lettersLeft, size -1, word + letters[i]);
+            }
+        }
+
     }
 
     /// <summary>
@@ -219,7 +240,12 @@ public static class RecursionTester {
     /// until the memoization is implemented.
     /// </summary>
     public static decimal CountWaysToClimb(int s, Dictionary<int, decimal>? remember = null) {
-        // Base Cases
+        // TODO Start Problem 3
+        if (remember == null)
+        {
+            remember = new Dictionary<int, decimal>();
+        }
+        // Base Case
         if (s == 0)
             return 0;
         if (s == 1)
@@ -229,8 +255,14 @@ public static class RecursionTester {
         if (s == 3)
             return 4;
 
+        // Check if we have solved this one before
+        if (remember.ContainsKey(s))
+            return remember[s];
+
         // Solve using recursion
-        decimal ways = CountWaysToClimb(s - 1) + CountWaysToClimb(s - 2) + CountWaysToClimb(s - 3);
+        decimal ways = CountWaysToClimb(s - 1,remember) + CountWaysToClimb(s - 2,remember) + CountWaysToClimb(s - 3,remember);
+        
+        remember[s] = ways;
         return ways;
     }
 
@@ -249,6 +281,27 @@ public static class RecursionTester {
     /// </summary>
     public static void WildcardBinary(string pattern) {
         // TODO Start Problem 4
+        int index = pattern.IndexOf('*');
+        if (index == -1)
+        {
+            Console.WriteLine(pattern);
+        }
+        else 
+        {
+            string b = pattern[..index];
+            string wild = pattern[index..];
+            for (var i = 0; i < wild.Length; i++)
+            {
+                if (wild[i] == '*')
+                {   
+                    for (var j =0; j < 2; j++)
+                    {
+                        wild = wild.Remove(i, 1).Insert(i, j.ToString());
+                        WildcardBinary(b+wild);
+                    } 
+                }
+            }
+        }
     }
 
     /// <summary>
