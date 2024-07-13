@@ -191,7 +191,6 @@ public static class RecursionTester {
                PermutationsChoose(lettersLeft, size -1, word + letters[i]);
             }
         }
-
     }
 
     /// <summary>
