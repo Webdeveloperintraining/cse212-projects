@@ -1,3 +1,6 @@
+using System.ComponentModel.DataAnnotations;
+using Microsoft.VisualBasic;
+
 public class Node {
     public int Data { get; set; }
     public Node? Right { get; private set; }
@@ -15,7 +18,7 @@ public class Node {
             else
                 Left.Insert(value);
         }
-        else {
+        else if (value > Data){
             // Insert to the right
             if (Right is null)
                 Right = new Node(value);
@@ -26,11 +29,34 @@ public class Node {
 
     public bool Contains(int value) {
         // TODO Start Problem 2
-        return false;
+        if (value < Data)
+            if (Left is null)
+                return false;
+            else
+                return Left.Contains(value);
+
+        else if (value == Data)
+            return true;
+        
+        else
+            if (Right is null)
+                return false;
+            else
+                return Right.Contains(value);
     }
 
     public int GetHeight() {
         // TODO Start Problem 4
-        return 0; // Replace this line with the correct return statement(s)
+        int hleft = 0;
+        int hright = 0;
+        if (Left is not null)
+        //if (Data < hright)
+            hleft= Left.GetHeight();  
+              
+        if (Right is not null)
+            //if (Data > hright)
+                hright= Right.GetHeight();
+
+        return  Math.Max(hleft, hright) + 1;
     }
 }
